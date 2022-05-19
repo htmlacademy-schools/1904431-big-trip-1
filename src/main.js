@@ -12,7 +12,6 @@ const Trip_Count = 20;
 
 const tripEvents = Array.from({length: Trip_Count}, generateTripEvent);
 
-
 const TripControlsNavigationElement = document.querySelector('.trip-controls__navigation');
 const TripControlsFiltersElement = document.querySelector('.trip-controls__filters');
 const TripEventsElement = document.querySelector('.trip-events');
