@@ -1,9 +1,9 @@
 export const eventLocation = () => ([
 'Moscow',
-'St. Petersburg',
+'Marmaris',
 'London',
 'New-York',
 'Dubai',
 'Larnaka',
-'Ontario'
+'Bangkok'
 ]);
