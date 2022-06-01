@@ -6,7 +6,7 @@ import {createElement} from '../render';
 export const createAddEventItemTemplate = (tripEvent) => {
   const {offers, description, photos} = tripEvent;
   const eventType = 'check-in';
-  const templateDatetime = dayjs().add(14, 'day').hour(10).minute(0).format('DD/MM/YY HH:mm');
+  const templateDatetime = dayjs().add(14, 'day').hour(0).minute(0).format('DD/MM/YY HH:mm');
 
   const createOfferMarkup = (offer) => {
     const offerName = offer.name;

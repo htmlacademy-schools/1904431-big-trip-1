@@ -6,6 +6,7 @@ import EventItemAddView from './view/add-new-event-form.js';
 import EventItemEditView from './view/trip-events-edit-form';
 import TripEventItemView from './view/trip-events-item-view.js';
 import EventListView from './view/events-list-view.js';
+import NoTripEventsView from './view/no-trip-events';
 import {generateTripEvent} from './mock/events';
 
 const Trip_Count = 20;
@@ -17,11 +18,16 @@ const tripControlsFiltersElement = document.querySelector('.trip-controls__filte
 const tripEventsElement = document.querySelector('.trip-events');
 const tripEventsListElement = new EventListView();
 
-render(tripEventsElement, tripEventsListElement.element, RenderPosition.BEFOREEND);
 render(tripControlsNavigationElement, new TripTabsView().element, RenderPosition.BEFOREEND);
 render(tripControlsFiltersElement, new TripFilterView().element, RenderPosition.BEFOREEND);
-render(tripEventsElement, new TripSortView().element, RenderPosition.AFTERBEGIN);
-render(tripEventsListElement.element, new EventItemAddView(tripEvents[1]).element, RenderPosition.BEFOREEND);
+
+if (tripEvents.length === 0) {
+  render(tripEventsElement, new NoTripEventsView().element, RenderPosition.BEFOREEND);
+} else {
+  render(tripEventsElement, tripEventsListElement.element, RenderPosition.BEFOREEND);
+  render(tripEventsElement, new TripSortView().element, RenderPosition.AFTERBEGIN);
+  render(tripEventsListElement.element, new EventItemAddView(tripEvents[0]).element, RenderPosition.BEFOREEND);
+}
 
 const renderEvent = (eventListElement, event) => {
   const eventItemComponent = new TripEventItemView(event);
@@ -47,6 +53,10 @@ const renderEvent = (eventListElement, event) => {
     document.addEventListener('keydown', onEscKeyDown);
   });
 
+  eventEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+    replaceFormToItem();
+  });
+  
   eventEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
     evt.preventDefault();
     replaceFormToItem();
