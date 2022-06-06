@@ -18,15 +18,15 @@ const tripControlsFiltersElement = document.querySelector('.trip-controls__filte
 const tripEventsElement = document.querySelector('.trip-events');
 const tripEventsListElement = new EventListView();
 
-render(tripControlsNavigationElement, new TripTabsView().element, RenderPosition.BEFOREEND);
-render(tripControlsFiltersElement, new TripFilterView().element, RenderPosition.BEFOREEND);
+render(tripControlsNavigationElement, new TripTabsView(), RenderPosition.BEFOREEND);
+render(tripControlsFiltersElement, new TripFilterView(), RenderPosition.BEFOREEND);
 
 if (tripEvents.length === 0) {
-  render(tripEventsElement, new NoTripEventsView().element, RenderPosition.BEFOREEND);
+  render(tripEventsElement, new NoTripEventsView(), RenderPosition.BEFOREEND);
 } else {
-  render(tripEventsElement, tripEventsListElement.element, RenderPosition.BEFOREEND);
-  render(tripEventsElement, new TripSortView().element, RenderPosition.AFTERBEGIN);
-  render(tripEventsListElement.element, new EventItemAddView(tripEvents[0]).element, RenderPosition.BEFOREEND);
+  render(tripEventsElement, tripEventsListElement, RenderPosition.BEFOREEND);
+  render(tripEventsElement, new TripSortView(), RenderPosition.AFTERBEGIN);
+  render(tripEventsListElement, new EventItemAddView(tripEvents[0]).element, RenderPosition.BEFOREEND);
 }
 
 const renderEvent = (eventListElement, event) => {
@@ -48,22 +48,22 @@ const renderEvent = (eventListElement, event) => {
     }
   };
 
-  eventItemComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+  eventItemComponent.setEditClickHandler(() => {
     replaceItemToForm();
     document.addEventListener('keydown', onEscKeyDown);
   });
 
-  eventEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+  eventEditComponent.setRollupClickHandler(()=> {
     replaceFormToItem();
+    document.addEventListener('keydown', onEscKeyDown);
   });
   
-  eventEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
-    evt.preventDefault();
+  eventEditComponent.setFormSubmit(() => {
     replaceFormToItem();
     document.removeEventListener('keydown', onEscKeyDown);
   });
 
-  render(eventListElement, eventItemComponent.element, RenderPosition.BEFOREEND);
+  render(eventListElement, eventItemComponent, RenderPosition.BEFOREEND);
 };
 
 for (let i = 1; i < Trip_Count; i++) {

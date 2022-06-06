@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import {eventLocation} from '../mock/event-location';
 import {eventTypes} from '../mock/event_type';
-import {createElement} from '../render';
+import AbstractView from './abstarct-view';
 
 export const createEditedEventItemTemplate = (tripEvent) => {
   const {eventType, price, location, startDate, endDate, offers, description} = tripEvent;
@@ -103,27 +103,35 @@ return types.map(createType).join('');
             </li>`;
 };
 
-export default class EventItemEditView {
-  #element = null;
+export default class EventItemEditView extends AbstractView {
+
   #tripEvent = null;
 
   constructor(event) {
+    super();
     this.#tripEvent = event;
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-
-    return this.#element;
   }
 
   get template() {
     return createEditedEventItemTemplate(this.#tripEvent);
   }
+  setFormSubmit = (callback) => {
+    this._callback.formSubmit = callback;
+    this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
+  }
 
-  removeElement() {
-    this.#element = null;
+  #formSubmitHandler = (event) => {
+    event.preventDefault();
+    this._callback.formSubmit();
+  }
+
+  setRollupClickHandler = (callback) => {
+    this._callback.rollupClick = callback;
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#rollupClickHandler);
+  }
+
+  #rollupClickHandler = (event) => {
+    event.preventDefault();
+    this._callback.rollupClick();
   }
 }
