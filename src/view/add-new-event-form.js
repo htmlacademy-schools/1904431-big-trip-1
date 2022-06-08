@@ -109,9 +109,9 @@ export const createAddEventItemTemplate = (tripEvent) => {
 export default class EventItemAddView extends AbstractView {
   #tripEvent = null;
 
-  constructor(event) {
+  constructor(tripEvent) {
     super();
-    this.#tripEvent = event;
+    this.#tripEvent = tripEvent;
   }
 
   get template() {

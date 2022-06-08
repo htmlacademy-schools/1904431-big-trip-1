@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import {eventLocation} from './event-location';
+import {nanoid} from 'nanoid';
 
 const getRandomInt = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -156,6 +157,7 @@ export const generateTripEvent = () => {
   const dates = generateBeginEndDates();
 
   return {
+    id: nanoid(),
     eventType: generateEventType(),
     location: generateCities(),
     startDate: dates.start,
