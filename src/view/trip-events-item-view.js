@@ -75,9 +75,9 @@ const createTripEventsItemTemplate = (tripEvent) => {
 export default class TripEventItemView extends AbstractView {
   #tripEvent = null;
 
-  constructor(event) {
+  constructor(tripEvent) {
     super();
-    this.#tripEvent = event;
+    this.#tripEvent = tripEvent;
   }
 
   get template() {
@@ -89,8 +89,18 @@ export default class TripEventItemView extends AbstractView {
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
+  setFavoriteClickHandler = (callback) => {
+    this._callback.favoriteClick = callback;
+    this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
+  }
+
   #editClickHandler = (event) => {
     event.preventDefault();
     this._callback.editClick();
+  }
+
+  #favoriteClickHandler = (event) => {
+    event.preventDefault();
+    this._callback.favoriteClick();
   }
 }

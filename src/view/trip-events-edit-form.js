@@ -107,15 +107,15 @@ export default class EventItemEditView extends AbstractView {
 
   #tripEvent = null;
 
-  constructor(event) {
+  constructor(tripEvent) {
     super();
-    this.#tripEvent = event;
+    this.#tripEvent = tripEvent;
   }
 
   get template() {
     return createEditedEventItemTemplate(this.#tripEvent);
   }
-  setFormSubmit = (callback) => {
+  setFormSubmitHandler = (callback) => {
     this._callback.formSubmit = callback;
     this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
   }
@@ -123,6 +123,7 @@ export default class EventItemEditView extends AbstractView {
   #formSubmitHandler = (event) => {
     event.preventDefault();
     this._callback.formSubmit();
+    this._callback.formSubmit(this.#tripEvent);
   }
 
   setRollupClickHandler = (callback) => {
