@@ -11,3 +11,9 @@ export const updateItem = (items, update) => {
       ...items.slice(index + 1),
     ];
   };
+
+  export const SortForm = {
+    SORT_DAY: 'sort-day',
+    SORT_TIME: 'sort-time',
+    SORT_PRICE: 'sort-price'
+  };
