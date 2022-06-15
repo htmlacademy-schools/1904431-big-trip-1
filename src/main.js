@@ -1,20 +1,32 @@
-import {render, RenderPosition} from './utils/render.js';
-import TripTabsView from './view/site-menu-view.js';
-import TripFilterView from './view/trip-filter-view.js';
-import {generateTripEvent} from './mock/events';
+import { generateEvents } from './mock/event.js';
 import TripPresenter from './presenter/trip-presenter.js';
+import EventsModel from './model/events-model.js';
+import FilterModel from './model/filter-model.js';
+import FilterPresenter from './presenter/filter-presenter.js';
 
-const Trip_Count = 7;
+const eventsCount = 10;
 
-const tripEvents = Array.from({length: Trip_Count}, generateTripEvent);
+const events = Array.from({ length: eventsCount }, generateEvents);
 
-const pageMainElement = document.querySelector('.page-body');
+const siteNavigationElement = document.querySelector('.trip-controls__navigation');
 
-const tripControlsNavigationElement = document.querySelector('.trip-controls__navigation');
-const tripControlsFiltersElement = document.querySelector('.trip-controls__filters');
+const siteFilterElement = document.querySelector('.trip-controls__filters');
 
-render(tripControlsNavigationElement, new TripTabsView(), RenderPosition.BEFOREEND);
-render(tripControlsFiltersElement, new TripFilterView(), RenderPosition.BEFOREEND);
+const tripEvents = document.querySelector('.trip-events');
 
-const tripPresenter = new TripPresenter (pageMainElement);
-tripPresenter.init(tripEvents);
+const eventsModel = new EventsModel();
+eventsModel.events = events;
+
+const filterModel = new FilterModel();
+
+const tripPresenter = new TripPresenter(tripEvents, siteNavigationElement, eventsModel, filterModel);
+const filterPresenter = new FilterPresenter(siteFilterElement, filterModel);
+
+filterPresenter.init();
+
+tripPresenter.init();
+
+document.querySelector('.trip-main__event-add-btn').addEventListener('click', (evt) => {
+  evt.preventDefault();
+  tripPresenter.createEvent();
+});
