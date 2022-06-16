@@ -1,4 +1,4 @@
-import { FilterType } from '../const';
+import { FilterType } from './const';
 import dayjs from 'dayjs';
 
 export const filter = {

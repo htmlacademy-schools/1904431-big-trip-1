@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 import { nanoid } from 'nanoid';
 import { getRandomNumber } from '../utils/common.js';
-import { getDiffDates } from '../utils/date-manipulation.js';
+import { getDiffDates } from '../utils/date.js';
 
 const typeRoutes = [
   { title: 'taxi', img: 'img/icons/taxi.png', allOffer: [], selectedOffer: [], allPriceOffers: 0 },
@@ -17,9 +17,13 @@ const typeRoutes = [
 ];
 
 const cityes = [
-  { titleCity: 'Amsterdam', description: '', photos: [], isShowPhoto: false },
-  { titleCity: 'Geneva', description: '', photos: [], isShowPhoto: false },
-  { titleCity: 'Chamonix', description: '', photos: [], isShowPhoto: false }
+  { titleCity: 'Bangkok', description: '', photos: [], isShowPhoto: false },
+  { titleCity: 'London', description: '', photos: [], isShowPhoto: false },
+  { titleCity: 'New-York', description: '', photos: [], isShowPhoto: false },
+  { titleCity: 'Larnaka', description: '', photos: [], isShowPhoto: false },
+  { titleCity: 'Moscow', description: '', photos: [], isShowPhoto: false },
+  { titleCity: 'Marmaris', description: '', photos: [], isShowPhoto: false },
+  { titleCity: 'Berlin', description: '', photos: [], isShowPhoto: false }
 ];
 
 const offersTitle = [

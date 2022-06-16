@@ -1,6 +1,6 @@
 import FilterView from '../view/trip-filter-view.js';
 import {render, RenderPosition, replace, remove} from '../utils/render';
-import {FilterType, UpdateType} from '../const.js';
+import {FilterType, UpdateType} from '../utils/const.js';
 
 export default class FilterPresenter {
   #filterContainer = null;

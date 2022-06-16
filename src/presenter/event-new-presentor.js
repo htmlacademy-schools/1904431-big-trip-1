@@ -1,6 +1,6 @@
 import EditPoint from '../view/add-new-event-form.js';
 import { nanoid } from 'nanoid';
-import { UserAction, UpdateType } from '../const.js';
+import { UserAction, UpdateType } from '../utils/const.js';
 import { RenderPosition, render, remove } from '../utils/render';
 
 export default class EventNewPresenter {
@@ -55,8 +55,6 @@ export default class EventNewPresenter {
     this.#changeData(
       UserAction.ADD_EVENT,
       UpdateType.MINOR,
-      // Пока у нас нет сервера, который бы после сохранения
-      // выдывал честный id задачи, нам нужно позаботиться об этом самим
       {id: nanoid(), ...event},
     );
     this.destroy();

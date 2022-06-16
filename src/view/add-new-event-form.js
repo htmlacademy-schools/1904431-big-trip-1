@@ -142,9 +142,13 @@ const createTripEditPoint = (event = {}) => {
         </label>
         <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${city.currentCity.titleCity}" list="destination-list-1">
         <datalist id="destination-list-1">
-          <option value="Amsterdam"></option>
-          <option value="Geneva"></option>
-          <option value="Chamonix"></option>
+          <option value="Marmaris"></option>
+          <option value="London"></option>
+          <option value="New-York"></option>
+          <option value="Bangkok"></option>
+          <option value="Berlin"></option>
+          <option value="Moscow"></option>
+          <option value="Larnaka"></option>
         </datalist>
       </div>
 

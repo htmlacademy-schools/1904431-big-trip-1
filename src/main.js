@@ -4,7 +4,7 @@ import EventsModel from './model/events-model.js';
 import FilterModel from './model/filter-model.js';
 import FilterPresenter from './presenter/filter-presenter.js';
 
-const eventsCount = 10;
+const eventsCount = 7;
 
 const events = Array.from({ length: eventsCount }, generateEvents);
 

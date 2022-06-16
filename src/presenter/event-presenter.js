@@ -1,7 +1,7 @@
 import EventView from '../view/item-event-view.js';
 import EditPoint from '../view/add-new-event-form.js';
-import { UserAction, UpdateType } from '../const.js';
-import { isDatesEqual } from '../utils/date-manipulation.js';
+import { UserAction, UpdateType } from '../utils/const.js';
+import { isDatesEqual } from '../utils/date.js';
 import { RenderPosition, render, replace, remove } from '../utils/render';
 
 const Mode = {

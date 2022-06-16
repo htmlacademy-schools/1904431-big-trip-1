@@ -1,10 +1,10 @@
 import MenuView from '../view/site-menu-view';
 import ListEventView from '../view/events-list-view.js';
 import SortView from '../view/trip-sort-view.js';
-import EventEmpty from '../view/event-empty.js';
+import EventEmpty from '../view/event-empty-view.js';
 import EventPresenter from './event-presenter.js';
 import EventNewPresenter from './event-new-presentor.js';
-import { UserAction, UpdateType, FilterType } from '../const.js';
+import { UserAction, UpdateType, FilterType } from '../utils/const.js';
 import { filter } from '../utils/filter.js';
 import { generateEvents } from '../mock/event.js';
 import { SortType, sortEventDate, sortEventTime, sortEventPrice } from '../utils/sorting.js';
@@ -71,21 +71,17 @@ export default class TripPresenter {
   }
 
   #handleModelEvent = (updateType, data) => {
-    // В зависимости от типа изменений решаем, что делать:
     switch (updateType) {
       case UpdateType.PATCH:
-        // - обновить часть списка (например, когда поменялось описание)
         this.#eventPresenters.get(data.id).init(data);
         break;
       case UpdateType.MINOR:
         this.#clearBoard();
         this.#renderBoard();
-        // - обновить список (например, когда задача ушла в архив)
         break;
       case UpdateType.MAJOR:
         this.#clearBoard({ resetSortType: true });
         this.#renderBoard();
-        // - обновить всю доску (например, при переключении фильтра)
         break;
     }
   }
